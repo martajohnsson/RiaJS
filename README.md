@@ -1,5 +1,13 @@
 # An idiots budget (Dokumentation):
 
+## Hur man kör igång applikationen
+
+Tanka ned all kod härifrån github och sätt sedan upp en webbserver
+som du pekar mot katalogen med filerna. Innan du besöker sidan är det
+viktigt att fixa ompekningen av variablerna libpath och srcpath i filen
+application/internal/master.js mot rätt URL. Byt ut http://jensevertsson.nu/budget/
+mot exempelvis http://localhost:8888/ om du nu skulle köra MAMP (Lamp-server för Mac).
+
 ## Interna filer (filer som hör till mitt projekt, skapade av mig)
 
 - index.html = Filen som drar igång hela applikationen med stilmallar osv

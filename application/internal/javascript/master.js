@@ -4,8 +4,8 @@
 // external/javascript/libs/headjs/head.js
 // internal/javascript/routers/router_master.js
 
-var libpath = "http://" + document.location.host + "/application/external/javascript/libs/";
-var srcpath = "http://" + document.location.host + "/application/internal/javascript/";
+var libpath = "http://jensevertsson.nu/budget/application/external/javascript/libs/";
+var srcpath = "http://jensevertsson.nu/budget/application/internal/javascript/";
 
 // Ladda in alla filer (interna/externa) som används av applikationen
 head.js
