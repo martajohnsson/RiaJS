@@ -40,7 +40,7 @@
 
 ## Övergripande sekvensdiagram (avseende instansiering av klasser via: new classname)
 
-Länk till bild: https://github.com/jensevertsson/RiaJS/sekvensdiagram.png
+Länk till bild: https://github.com/jensevertsson/RiaJS/raw/master/sekvensdiagram.png
 
 ## Att fixa med (för den som vill)
 
