@@ -1,7 +1,7 @@
 var libpath = document.location + "application/external/javascript/libs/";
 var srcpath = document.location + "application/internal/javascript/";
 
-// Load all the files (external/internal) the project are using
+// Ladda in alla filer (interna/externa) som används av applikationen
 head.js
 (
 	libpath + "jquery/jquery.js",
@@ -18,8 +18,8 @@ head.js
 	srcpath + "views/view_budget_post.js"
 );
 
-// Start the whole thing by calling the router and
-// the history feature in backbone
+// Starta upp allting genom att ladda router-klassen
+// samt göra igång historik-funktionen som backbone tillhandahåller
 head.ready(function()
 {
 	this.router_master = new router_master();

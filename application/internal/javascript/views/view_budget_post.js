@@ -1,26 +1,26 @@
-// View-class for outputting a single row in the budgetitems
+// Vy-klass för utskrift av en budgetpost
 var view_budget_post = Backbone.View.extend
 ({
-	tagName: 'tr', // What will every single item be of?
+	tagName: 'tr', // Tagg som varje rad/modell kommer skrivas ut i vyn som
 
-	// Draw one row and give it the right color
+	// Skriv ut en rad och ge den rätt färg
 	initialize: function()
 	{
 		this.color = '';
-		this.post = this.model.toJSON(); // Connect against a model
+		this.post = this.model.toJSON(); // Anslut gentemot modellen
 		
-		// Set an income-row with a green color
+		// Ge en inkomstrad en grön färg
 		if (this.post.type == 'Inkomst')
 		{
 			this.color = 'income';
 		}
-		// Set an spending-row with a red color
+		// Ge en utgiftsrad en röd färg
 		else if (this.post.type == 'Utgift')
 		{
 			this.color = 'outcome';
 		}
 
-		// Output one row
+		// Skriv ut en rad
 		$(this.el).html
 		(
 			'<td class="' + this.color + '">' + this.post.type + '</td>'
@@ -31,14 +31,14 @@ var view_budget_post = Backbone.View.extend
 		);
 	},
 
-	// Call methods in this class with events like mouseclicks etc
+	// Hämta metoder vid händelser som musklick osv
 	events: {
 		'click .deleteItem': 'deleteItemQuestion',
 		'click .changeItemValue': 'changeItemQuestion'
 	},
 
-	// Show a confirm-question before deleting
-	// a row
+	// Visa en ruta som frågar om användaren är säker på att den vill ta bort en budgetpost
+	// innan den tas bort
 	deleteItemQuestion: function()
 	{
 		var thisModel = this;
@@ -54,16 +54,16 @@ var view_budget_post = Backbone.View.extend
 		});
 	},
 
-	// Delete one item from the collection (storage)
-	/// and remove it from the GUI
+	// Tar bort en modell och tar bort
+	// dess gränssnitt
 	deleteItem: function(a_post)
 	{
 		a_post.destroy();
 		$(this.el).remove();
 	},
 
-	// Show a input-question before changing
-	// a row
+	// Visar en ruta med värdet som ska skrivas in
+	// innan värdet ändras
 	changeItemQuestion: function()
 	{
 		var thisModel = this;
@@ -80,7 +80,7 @@ var view_budget_post = Backbone.View.extend
 		);
 	},
 	
-	// Save a changed row
+	// Spara ett ändrat värde
 	changeItemValue: function(a_value)
 	{
 		this.model.save({value: a_value});

@@ -1,8 +1,8 @@
-// The view-class who draws the base interface of the application
+// Vy-klassen som ritar ut det huvudsakliga gränssnittet
 var view_start = Backbone.View.extend
 ({
-	// Use the one and only template for the gui, bind to events that happend in the other view-class,
-	// and keep the collection with models to a variable
+	// Använd den enda mallen som finns i applikationen, hämta in de lagrade modellerna
+	// samt bind händelser för ändring/borttagning av modeller till metoder i den här klassen
 	initialize: function(a_placeholder, a_collection)
 	{
 		this.template = _.template($('#start').html());
@@ -11,12 +11,13 @@ var view_start = Backbone.View.extend
 		this.collection_budget_posts.on('change', this.render, this);
 	},
 
-	// Call methods in this class with events like mouseclicks etc
+	// Lyssna till händelser i denna klass och kör metoder
+	// baserat på musklick osv
 	events: {
     	'click #send_post': 'addBudgetPost',
   	},
 
-	// Render a template, fill it with budgetitems and draw the diagram
+	// Rendera mallen, skriv ut budgetposterna och fyll diagrammet med data
 	render: function()
 	{
 		$(this.el).html(this.template);
@@ -24,22 +25,22 @@ var view_start = Backbone.View.extend
 		this.fillDiagram();
 	},
 
-	// Add one budgetitem by giving it a category (category and type) and
-	// a value with numbers
+	// Lägg till en budgetpost genom att hämta kategori (kategori och typ) samt
+	// värde från gränssnittet
 	addBudgetPost: function()
 	{
-		// Get the category from the text that you'll see in the <select>
+		// Hämta kategorin från den text du ser i gränssnittet för <select>-elementet
 		this.select_category = $('#select_category :selected').text();
 
-		// Get the type (inkomst/utgift) from the selected value in the <select>
+		// Hämta typen (inkomst/utgift) från value-värdet för den markerade raden i <select>-elementet
 		this.select_type = $('#select_category').val();
 
-		// Get the value from the other field
+		// Hämta värdet i siffror från det andra fältet
 		this.input_value = $('#input_value').val();
 
 		if (this.select_category != '' && this.input_value != '')
 		{	
-			// Create a new model with all the data that should be in it
+			// Skapa en ny modell med all data som ska finnas i den
 			var model = new model_budget_post
 			({
 				category: this.select_category,
@@ -47,20 +48,20 @@ var view_start = Backbone.View.extend
 				value: this.input_value
 			});
 
-			// Add a model to the collection (storage)
+			//Lägg till en ny modell till lagringen (localstorage)
 			this.collection_budget_posts.add(model);
 
-			// Save the model so it will stay in the storage, until it's cleared/or deleted etc
+			// Spara modellen tills den tas bort/rensas etc
 			model.save();
 	
-			// Clear the category/type and value fields
+			// Rensa kategori och värde från synligt innehåll
 			this.$('#select_category').val('');
 			this.$('#input_value').val('');
 
-			// Draw one budgetitem to the GUI
+			// Kalla på metoden för att skriva ut en budgetpost i gränssnittet
 			this.addSingleItem(model);
 
-			// Update the whole GUI
+			// Uppdatera det huvudsakliga gränssnittet
 			this.render();
 		}
 		else
@@ -69,13 +70,13 @@ var view_start = Backbone.View.extend
 		}
 	},
 	
-	// Draw the diagram
+	// Skriv ut diagrammet
 	drawDiagram: function(a_incomes, a_outcomes)
 	{
-		// Output incomes and spendings by showing it in a pie-diagram
+		// Skriv ut inkomster och utgifter i ett cirkeldiagram
 		this.outputDiagram = new Bluff.Pie('income_outcome_graph', '600x300');
 
-		// Set the theme of the diagram
+		// Låt cirkeldiagrammet få ett speciellt tema med färger
 		this.outputDiagram.set_theme
 		({
 	    	marker_color: '#000000',
@@ -83,29 +84,29 @@ var view_start = Backbone.View.extend
 	    	background_colors: ['#ffffff', '#ffffff']
 	  	});
 	
-		// Output incomes as green
+		// Skriv ut inkomster i en grön färg
 	    this.outputDiagram.data('Inkomster', [parseInt(a_incomes)], '#00ff00');
 
-		// Output spendings as red
+		// Skriv ut utgifter i en röd färg
 	    this.outputDiagram.data('Utgifter', [parseInt(a_outcomes)], '#ff0000');
 	
-		// Start it up
+		// Rita ut diagrammet
 	    this.outputDiagram.draw();
 	},
 
-	// Draw one row to the GUI
+	// Lägg till en budgetpost till gränssnittet
 	addSingleItem: function(a_post)
 	{
 		$('#budgetItems').append(new view_budget_post({model: a_post}).el);
 	},
 	
-	// Fill the diagram with data
+	// Fyll diagrammet med data
 	fillDiagram: function()
 	{
 		incomes = 0;
 		outcomes = 0;
 
-		// Hide the labels about what's left and so on
+		// Dölj titlarna för hur mycket pengar man har kvar osv
 		if (this.collection_budget_posts.length == 0)
 		{
 			this.$('#budgetOutput').hide();
@@ -115,22 +116,22 @@ var view_start = Backbone.View.extend
 			this.$('#budgetOutput').show();
 		}
 
-		// Count how many items of income and spendings there is
+		// Räkna hur mycket inkomster och utgifter det finns
 		this.collection_budget_posts.each(function(a_post)
 		{
 			post = a_post.toJSON();
 		
 			if (post.type == 'Inkomst')
 			{
-				incomes += parseInt(post.value); // Count the incomes
+				incomes += parseInt(post.value); // Räkna totalt antal inkomster
 			}
 			else if (post.type == 'Utgift')
 			{
-				outcomes += parseInt(post.value); // Count the spendings
+				outcomes += parseInt(post.value); // Räkna totalt antal utgifter
 			}
 		});
 
-		// If there is a income/spending, show labels
+		// Om det finns inkomster/utgifter, visa titlar för hur mycket pengar det finns kvar osv
 		if (incomes != 0 || outcomes != 0)
 		{
 			$('#budgetSummaryIncomePlaceholder').show();
@@ -139,7 +140,7 @@ var view_start = Backbone.View.extend
 			$('#budgetSummaryOutcomePlaceholder').show();
 			$('#budgetSummaryOutcome').html(parseInt(outcomes) + ' kr');
 		}
-		// If there isn't a income/spending, hide the labels
+		// Om det inte finns inkomster/utgifter, dölj titlar för hur mycket pengar det finns kvar osv
 		else
 		{
 			$('#budgetSummaryIncomePlaceholder').hide();
@@ -149,7 +150,7 @@ var view_start = Backbone.View.extend
 			$('#budgetSummaryOutcome').html('');
 		}
 
-		// Call the method who draws the diagram
+		// Kalla på metoden som ritar ut diagrammet
 		this.drawDiagram(incomes, outcomes);
 	}
 });

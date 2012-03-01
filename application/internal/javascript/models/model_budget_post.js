@@ -1,2 +1,2 @@
-// Model-class for handling one budgetitem
+// Model-klass för hantering av en budgetpost
 var model_budget_post = Backbone.Model.extend();

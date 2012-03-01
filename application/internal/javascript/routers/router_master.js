@@ -1,26 +1,25 @@
-// Router-class for pointing the user towards
-// the right direction in the application
+// Router-klass för att kunna skicka användaren till
+// rätt plats i applikationen
 var router_master = Backbone.Router.extend
 ({
-	placeholder: '#basePlaceholder', // The only placeholder in the html-document
-	cached_views: {}, // Hold all the views
+	placeholder: '#basePlaceholder', // Den enda platshållaren i html-dokumentet
+	cached_views: {}, // Håller alla vyer
 
-	// Send the user to the right direction
-	// based on the URL: http://url/#start
+	// Skicka användaren till rätt plats
+	// baserat på URL:en: http://url/#start
 	routes: {
     	'': 				'start',
 		'start': 			'start'
   	},
 
-	// Clear the view before adding a new one
+	// Rensa vyn innan det laddas in en ny
 	clearView: function() 
 	{
 		$(this.placeholder).empty();
 	},
 
-	// Gets all the budgetitems from the storage
-	// and output them into the interface.
-	// Also start of the views!
+	// Hämtar alla sparade modeller från localstorage
+	// och visar dem i gränssnittet osv
 	initialize: function()
 	{
 		this.collection_budget_posts = new collection_budget_posts();
@@ -30,7 +29,7 @@ var router_master = Backbone.Router.extend
         this.cached_views.view_start = this.view_start;
 	},
 
-	// Render the only view in the whole application
+	// Rendera huvudgränssnittet för hela applikationen
 	start: function()
 	{
 		this.clearView();
