@@ -38,6 +38,10 @@
 
 - external/javascript/libs/underscore/underscore.js = Bibliotek för jquery
 
+## Övergripande sekvensdiagram (avseende instansiering av klasser via: new classname)
+
+Länk till bild: http://github.com/jensevertsson/RiaJS/sekvensdiagram.png
+
 ## Att fixa med (för den som vill)
 
 - Bättre validering av input-data

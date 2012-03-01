@@ -1,5 +1,11 @@
-var libpath = document.location + "application/external/javascript/libs/";
-var srcpath = document.location + "application/internal/javascript/";
+// BEROENDEN
+// ============================================================
+// external/javascript/libs/backbone/backbone.js
+// external/javascript/libs/headjs/head.js
+// internal/javascript/routers/router_master.js
+
+var libpath = "http://" + document.location.host + "/application/external/javascript/libs/";
+var srcpath = "http://" + document.location.host + "/application/internal/javascript/";
 
 // Ladda in alla filer (interna/externa) som används av applikationen
 head.js
@@ -15,7 +21,8 @@ head.js
 	srcpath + "views/view_start.js",
 	srcpath + "collections/collection_budget_posts.js",
 	srcpath + "models/model_budget_post.js",
-	srcpath + "views/view_budget_post.js"
+	srcpath + "views/view_budget_post.js",
+	srcpath + "views/view_about.js"
 );
 
 // Starta upp allting genom att ladda router-klassen

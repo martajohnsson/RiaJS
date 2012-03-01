@@ -1,3 +1,9 @@
+// BEROENDEN
+// ============================================================
+// external/javascript/libs/backbone/backbone.js
+// internal/javascript/views/view_start.js
+
+
 // Router-klass för att kunna skicka användaren till
 // rätt plats i applikationen
 var router_master = Backbone.Router.extend
@@ -9,7 +15,7 @@ var router_master = Backbone.Router.extend
 	// baserat på URL:en: http://url/#start
 	routes: {
     	'': 				'start',
-		'start': 			'start'
+		'about':			'about'
   	},
 
 	// Rensa vyn innan det laddas in en ny
@@ -27,6 +33,10 @@ var router_master = Backbone.Router.extend
 
 		this.view_start = new view_start({el: $(this.placeholder)}, this.collection_budget_posts);
         this.cached_views.view_start = this.view_start;
+
+		// Instansiera även en about-vy och lagra
+		this.view_about = new view_about({el: $(this.placeholder)});
+		this.cached_views.view_about = this.view_about;
 	},
 
 	// Rendera huvudgränssnittet för hela applikationen
@@ -34,5 +44,12 @@ var router_master = Backbone.Router.extend
 	{
 		this.clearView();
 		this.cached_views.view_start.render();
+	},
+
+	// Rendera en about-info vy om applikationen
+	about: function()
+	{
+		this.clearView();
+		this.cached_views.view_about.render();
 	}
 });

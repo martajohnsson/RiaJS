@@ -7,6 +7,19 @@ body
 	text-align: center;
 }
 
+/* Stilmall för länkar */
+a
+{
+	text-decoration: none;
+	color: #000000;
+}
+
+/* Stilmall för länkar (när man för muspekaren över) */
+a:hover
+{
+	text-decoration: underline;
+}
+
 /* Stilmall för tabell-celler */
 td
 {

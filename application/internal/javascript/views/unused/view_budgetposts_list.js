@@ -1,0 +1,1 @@
+// Tilltänkt vy för listningen av budgetposter

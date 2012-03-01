@@ -1,0 +1,19 @@
+title Enkelt flödesdiagram
+
+index.html->internal/javascript/master.js: 
+
+internal/javascript/master.js->internal/javascript/routers/router_master.js:
+
+internal/javascript/routers/router_master.js->internal/javascript/collections/collection_budget_posts.js:
+
+internal/javascript/router_master.js->internal/javascript/views/view_start.js:
+
+internal/javascript/router_master.js->internal/javascript/views/view_about.js:
+
+internal/javascript/views/view_start.js->internal/javascript/models/model_budget_post.js:
+
+internal/javascript/views/view_start.js->internal/javascript/views/view_budget_post.js:
+
+internal/javascript/views/view_start.js->external/javascript/libs/bluff/bluff.js:
+
+internal/javascript/collections/collection_budget_posts.js->external/javascript/libs/backbone/backbone.localStorage.js:

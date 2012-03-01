@@ -1,3 +1,15 @@
+// BEROENDEN
+// ============================================================
+// external/javascript/libs/backbone/backbone.js
+// internal/javascript/views/view_budget_post.js
+// internal/javascript/collections/collection_budget_posts.js
+// internal/javascript/models/model_budget_post.js
+
+// NOTE: Egentligen skulle denna fil vara uppdelad i tre klasser (för formulär, diagram och tabell)
+// men pågrund av tidsbrist så skippas det för den här gången. Filerna (tomma!) ligger dock i
+// katalogen unused
+
+
 // Vy-klassen som ritar ut det huvudsakliga gränssnittet
 var view_start = Backbone.View.extend
 ({
@@ -57,12 +69,6 @@ var view_start = Backbone.View.extend
 			// Rensa kategori och värde från synligt innehåll
 			this.$('#select_category').val('');
 			this.$('#input_value').val('');
-
-			// Kalla på metoden för att skriva ut en budgetpost i gränssnittet
-			this.addSingleItem(model);
-
-			// Uppdatera det huvudsakliga gränssnittet
-			this.render();
 		}
 		else
 		{

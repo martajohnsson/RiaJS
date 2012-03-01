@@ -1,3 +1,10 @@
+// BEROENDEN
+// ============================================================
+// external/javascript/libs/backbone/backbone.js
+// internal/javascript/models/model_budget_post.js
+// external/javascript/libs/apprise/apprise.js
+
+
 // Vy-klass för utskrift av en budgetpost
 var view_budget_post = Backbone.View.extend
 ({
