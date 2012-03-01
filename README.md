@@ -1,4 +1,4 @@
-# An idiots budget (Dokumentation):
+# An idiot's budget (Dokumentation):
 
 ## Hur man kör igång applikationen
 
