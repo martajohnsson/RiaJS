@@ -34,7 +34,7 @@ td
 	background-color: #ffffff;
 	margin: 20px auto;
 	padding: 20px;
-	width: 600px;
+	width: 900px;
 	-moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     -khtml-border-radius: 50px;
@@ -47,8 +47,9 @@ td
 #placeholderInfo
 {
 	padding-top: 20px;
+	padding-left: 500px;
 	float: center;
-	width: 500px;
+	width: 200px;
 	margin: 0 auto;
 }
 
@@ -97,8 +98,9 @@ input[type=text], select
 /* Stilmall för titlarna för hur mycket pengar man har kvar osv */
 #budgetSummaryIncomePlaceholder
 {
-	float: left;
+	float: right;
 	padding: 10px;
+	width:190px;
 }
 
 /* Stilmall för titlarna för hur mycket pengar man har kvar osv */
@@ -106,4 +108,10 @@ input[type=text], select
 {
 	float: right;
 	padding: 10px;
+	width:190px;
+}
+
+.bluff-wrapper
+{
+	float:left;
 }
